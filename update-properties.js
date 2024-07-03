@@ -7,6 +7,8 @@ const REPO = process.env.GITHUB_REPO;
 const TOKEN = process.env.TOKEN;
 const CUSTOM_PROPERTIES_URL = `${GITHUB_API_URL}/repos/${OWNER}/${REPO}/custom_properties`;
 
+console.log(CUSTOM_PROPERTIES_URL)
+
 // Nomes e valores das propriedades personalizadas passadas via inputs
 const customProperties = {
   [process.env.CUSTOM_PROPERTY1_NAME]: process.env.CUSTOM_PROPERTY1_VALUE,
