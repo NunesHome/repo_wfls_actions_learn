@@ -36,7 +36,7 @@ jobs:
 
       - name: Run script to update properties
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use o token do GitHub Actions
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}  # Use o token do GitHub Actions
           GITHUB_OWNER: 'NunesHome'
           GITHUB_REPO: 'repocustomproperties'
           CUSTOM_PROPERTY1_NAME: ${{ github.event.inputs.custom_property1_name }}
