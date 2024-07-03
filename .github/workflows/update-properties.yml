@@ -1,0 +1,46 @@
+name: Update Custom Properties
+
+on:
+  workflow_dispatch:
+    inputs:
+      custom_property1_name:
+        description: 'Name of the first custom property'
+        required: true
+        default: 'custom_property1'
+      custom_property1_value:
+        description: 'Value of the first custom property'
+        required: true
+      custom_property2_name:
+        description: 'Name of the second custom property'
+        required: true
+        default: 'custom_property2'
+      custom_property2_value:
+        description: 'Value of the second custom property'
+        required: true
+
+jobs:
+  update-properties:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # ou a versão Node.js que você deseja usar
+
+      - name: Install dependencies
+        run: npm install axios
+
+      - name: Run script to update properties
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use o token do GitHub Actions
+          GITHUB_OWNER: 'seu-usuario'
+          GITHUB_REPO: 'seu-repositorio'
+          CUSTOM_PROPERTY1_NAME: ${{ github.event.inputs.custom_property1_name }}
+          CUSTOM_PROPERTY1_VALUE: ${{ github.event.inputs.custom_property1_value }}
+          CUSTOM_PROPERTY2_NAME: ${{ github.event.inputs.custom_property2_name }}
+          CUSTOM_PROPERTY2_VALUE: ${{ github.event.inputs.custom_property2_value }}
+        run: node update-properties.js
