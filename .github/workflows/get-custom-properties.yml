@@ -1,0 +1,41 @@
+name: 'get-custom'
+on:
+  workflow_dispatch:
+    inputs:
+      myInput:
+        description: 'User Input Here'
+        required: true
+
+
+jobs:
+  capture-pr-number:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Ensure jq is installed
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Get Template Origin
+        id: get-pr-number
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          saida=$(curl --request GET \
+          --url "https://api.github.com/repos/NunesHome/repo_wfls_actions_learn/properties/values" \
+          -H "Content-Type: application/json" \
+          -H "Accept: application/json" \
+          -H "Authorization: Bearer $GITHUB_TOKEN")
+
+          ##template_origem=$( echo "$saida" | jq '.["template_repository"]["name"]' )
+          
+          echo $template_origem
+
+          echo "template_origem=$template_origem" >> $GITHUB_OUTPUT
+      
+      - name: Generate Error Annotations
+        run: |
+          echo "::notice::Este repositorio esta com este TEMPLATE EM SUA ORIGEM: ${{steps.get-pr-number.outputs.template_origem}}"
