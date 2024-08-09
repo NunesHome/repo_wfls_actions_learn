@@ -33,7 +33,7 @@ jobs:
           ##template_origem=$( echo "$saida" | jq '.["template_repository"]["name"]' )
           
           echo $template_origem
-
+          echo $saida
           echo "template_origem=$template_origem" >> $GITHUB_OUTPUT
       
       - name: Generate Error Annotations
