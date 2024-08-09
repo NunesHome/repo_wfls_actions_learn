@@ -31,6 +31,10 @@ jobs:
           -H "Authorization: Bearer $GITHUB_TOKEN")
 
           ##template_origem=$( echo "$saida" | jq '.["template_repository"]["name"]' )
+
+          custom_value=$( echo "$saida" | jq -r '.[] | select(.property_name == "custom_property1_name") | .value')
+
+          echo $custom_value
           
           echo $template_origem
           echo $saida
