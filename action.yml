@@ -1,0 +1,14 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  repository:
+    description: 'Repository name'
+    required: true
+
+  template:
+    description: 'Template name'
+    required: true
+
+runs:
+  using: 'node20'
+  main: './github/actions/update-protection/index.js'
