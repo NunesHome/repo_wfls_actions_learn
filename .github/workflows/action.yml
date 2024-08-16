@@ -25,6 +25,7 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
+        working-directory: ./.github/actions/update-protection
         run: npm install
 
       - name: Update branch protection
