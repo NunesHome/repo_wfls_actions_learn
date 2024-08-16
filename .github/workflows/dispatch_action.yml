@@ -29,7 +29,7 @@ jobs:
         run: npm install
 
       - name: Update branch protection
-        uses: .github/actions/update-protection
+        uses: ./.github/actions/update-protection
         with:
           repository: ${{ github.event.inputs.repository }}
           template: ${{ github.event.inputs.template }}
