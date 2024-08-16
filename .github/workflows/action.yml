@@ -1,0 +1,36 @@
+name: Update Branch Protection
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: 'Repository name'
+        required: true
+        type: string
+      template:
+        description: 'Template name'
+        required: true
+        type: string
+
+jobs:
+  update-protection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Update branch protection
+        uses: ./.github/actions/update-protection
+        with:
+          repository: ${{ github.event.inputs.repository }}
+          template: ${{ github.event.inputs.template }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
