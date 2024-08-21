@@ -42,4 +42,4 @@ jobs:
 
       - name: Echo github obj
         run: | 
-          echo '${{ toJson(github) }}' | jq '.repository.custom_properties'
+          echo '${{ toJson(github) }}' | jq '.. | .custom_properties? // empty | .custom_property1_name? // empty'
