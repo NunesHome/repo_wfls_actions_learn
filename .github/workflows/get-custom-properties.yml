@@ -45,4 +45,5 @@ jobs:
           echo "::notice::Este repositorio esta com este TEMPLATE EM SUA ORIGEM: ${{steps.get-pr-number.outputs.template_origem}}"
 
       - name: Echo github obj
-        run: echo ${{ toJson(github) }}
+        run: | 
+          echo ${{ toJson(github.event) }}
