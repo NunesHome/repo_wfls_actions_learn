@@ -1,10 +1,6 @@
 name: 'get-custom'
 on:
-  workflow_dispatch:
-    inputs:
-      myInput:
-        description: 'User Input Here'
-        required: true
+  push
 
 
 jobs:
