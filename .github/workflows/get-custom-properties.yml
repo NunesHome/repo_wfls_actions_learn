@@ -42,4 +42,5 @@ jobs:
 
       - name: Echo github obj
         run: | 
-          echo '${{ toJson(github) }}' | jq '.. | .custom_properties? // empty | .custom_property1_name? // empty'
+          ruleset=$(echo '${{ toJson(github) }}' | jq '.. | .custom_properties? // empty | .custom_property1_name? // empty')
+          echo $ruleset
